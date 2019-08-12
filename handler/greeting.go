@@ -2,7 +2,6 @@ package handler
 
 import (
 	"context"
-	"os"
 	"time"
 
 	"github.com/google/uuid"
@@ -15,14 +14,16 @@ import (
 	pb "github.com/akiliLab/account/proto"
 )
 
-type greetingServiceServer struct {
+// GreetingServiceServer : server for greeting
+type GreetingServiceServer struct {
 }
 
 var (
 	greetings []*pb.Greeting
 )
 
-func (s *greetingServiceServer) Greeting(ctx context.Context, req *pb.GreetingRequest) (*pb.GreetingResponse, error) {
+// Greeting : A proof a concept
+func (s *GreetingServiceServer) Greeting(ctx context.Context, req *pb.GreetingRequest) (*pb.GreetingResponse, error) {
 	greetings = nil
 
 	tmpGreeting := pb.Greeting{
@@ -88,11 +89,4 @@ func createGRPCConn(ctx context.Context, addr string) (*grpc.ClientConn, error) 
 		return nil, err
 	}
 	return conn, nil
-}
-
-func getEnv(key, fallback string) string {
-	if value, ok := os.LookupEnv(key); ok {
-		return value
-	}
-	return fallback
 }

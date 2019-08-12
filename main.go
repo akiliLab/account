@@ -4,6 +4,7 @@ import (
 	"net"
 	"os"
 
+	handler "github.com/akiliLab/account/handler"
 	pb "github.com/akiliLab/account/proto"
 	runtime "github.com/banzaicloud/logrus-runtime-formatter"
 	log "github.com/sirupsen/logrus"
@@ -13,6 +14,13 @@ import (
 const (
 	port = ":50051"
 )
+
+func getEnv(key, fallback string) string {
+	if value, ok := os.LookupEnv(key); ok {
+		return value
+	}
+	return fallback
+}
 
 func init() {
 	formatter := runtime.Formatter{ChildFormatter: &log.JSONFormatter{}}
@@ -33,6 +41,6 @@ func main() {
 	}
 
 	s := grpc.NewServer()
-	pb.RegisterGreetingServiceServer(s, &greetingServiceServer{})
+	pb.RegisterGreetingServiceServer(s, &handler.GreetingServiceServer{})
 	log.Fatal(s.Serve(lis))
 }
