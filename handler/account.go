@@ -38,7 +38,7 @@ func (s *AccountServiceServer) Account(ctx context.Context, req *pb.AccountReque
 	// CallGrpcService(ctx, "balance:50051")
 
 	return &pb.AccountResponse{
-		Account: accounts,
+		Accounts: accounts,
 	}, nil
 }
 
@@ -62,12 +62,12 @@ func CallGrpcService(ctx context.Context, address string) {
 
 	req := pb.AccountRequest{}
 	account, err := client.Account(ctx, &req)
-	log.Info(account.GetAccount())
+	log.Info(account.GetAccounts())
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
 	}
 
-	for _, account := range account.GetAccount() {
+	for _, account := range account.GetAccounts() {
 		accounts = append(accounts, account)
 	}
 }

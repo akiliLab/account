@@ -22,7 +22,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/greetingAccountResponse"
+              "$ref": "#/definitions/accountAccountResponse"
             }
           }
         },
@@ -33,7 +33,7 @@
     }
   },
   "definitions": {
-    "greetingAccount": {
+    "accountAccount": {
       "type": "object",
       "properties": {
         "id": {
@@ -47,13 +47,13 @@
         }
       }
     },
-    "greetingAccountResponse": {
+    "accountAccountResponse": {
       "type": "object",
       "properties": {
         "accounts": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/greetingAccount"
+            "$ref": "#/definitions/accountAccount"
           }
         }
       }

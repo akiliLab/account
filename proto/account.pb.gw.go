@@ -2,11 +2,11 @@
 // source: proto/account.proto
 
 /*
-Package greeting is a reverse proxy.
+Package account is a reverse proxy.
 
 It translates gRPC into RESTful JSON APIs.
 */
-package greeting
+package account
 
 import (
 	"context"
