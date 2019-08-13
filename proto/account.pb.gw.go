@@ -99,7 +99,7 @@ func RegisterAccountServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 }
 
 var (
-	pattern_AccountService_Account_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"accounts"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_AccountService_Account_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "accounts"}, "", runtime.AssumeColonVerbOpt(true)))
 )
 
 var (

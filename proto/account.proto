@@ -11,12 +11,12 @@ message Account {
 
 message AccountRequest {}
 
-message AccountResponse { repeated Account Account = 1; }
+message AccountResponse { repeated Account accounts = 1; }
 
 service AccountService {
   rpc Account(AccountRequest) returns (AccountResponse) {
     option (google.api.http) = {
-      get : "/accounts"
+      get : "/api/v1/accounts"
     };
   }
 }
