@@ -41,6 +41,6 @@ func main() {
 	}
 
 	s := grpc.NewServer()
-	pb.RegisterGreetingServiceServer(s, &handler.GreetingServiceServer{})
+	pb.RegisterAccountServiceServer(s, &handler.AccountServiceServer{})
 	log.Fatal(s.Serve(lis))
 }

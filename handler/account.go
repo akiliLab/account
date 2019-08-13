@@ -22,8 +22,8 @@ var (
 	accounts []*pb.Account
 )
 
-// Greeting : A proof a concept
-func (s *AccountServiceServer) Greeting(ctx context.Context, req *pb.AccountRequest) (*pb.AccountResponse, error) {
+// Account : Get accounts
+func (s *AccountServiceServer) Account(ctx context.Context, req *pb.AccountRequest) (*pb.AccountResponse, error) {
 	accounts = nil
 
 	tmpAccount := pb.Account{
@@ -61,14 +61,14 @@ func CallGrpcService(ctx context.Context, address string) {
 	defer cancel()
 
 	req := pb.AccountRequest{}
-	greeting, err := client.Greeting(ctx, &req)
-	log.Info(greeting.GetGreeting())
+	account, err := client.Account(ctx, &req)
+	log.Info(account.GetAccount())
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
 	}
 
-	for _, greeting := range greeting.GetGreeting() {
-		greetings = append(greetings, greeting)
+	for _, account := range account.GetAccount() {
+		accounts = append(accounts, account)
 	}
 }
 
