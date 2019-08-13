@@ -1,0 +1,22 @@
+syntax = "proto3";
+package greeting;
+
+import "google/api/annotations.proto";
+
+message Account {
+  string id = 1;
+  string description = 2;
+  string created = 3;
+}
+
+message AccountRequest {}
+
+message AccountResponse { repeated Account Account = 1; }
+
+service AccountService {
+  rpc Account(AccountRequest) returns (AccountResponse) {
+    option (google.api.http) = {
+      get : "/accounts"
+    };
+  }
+}

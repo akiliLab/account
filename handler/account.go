@@ -14,32 +14,31 @@ import (
 	pb "github.com/akiliLab/account/proto"
 )
 
-// GreetingServiceServer : server for greeting
-type GreetingServiceServer struct {
+// AccountServiceServer : server for Account
+type AccountServiceServer struct {
 }
 
 var (
-	greetings []*pb.Greeting
+	accounts []*pb.Account
 )
 
 // Greeting : A proof a concept
-func (s *GreetingServiceServer) Greeting(ctx context.Context, req *pb.GreetingRequest) (*pb.GreetingResponse, error) {
-	greetings = nil
+func (s *AccountServiceServer) Greeting(ctx context.Context, req *pb.AccountRequest) (*pb.AccountResponse, error) {
+	accounts = nil
 
-	tmpGreeting := pb.Greeting{
-		Id:      uuid.New().String(),
-		Service: "Service-A",
-		Message: "Hello, from Service-A!",
-		Created: time.Now().Local().String(),
+	tmpAccount := pb.Account{
+		Id:          uuid.New().String(),
+		Description: "Peter Pan's Account",
+		Created:     time.Now().Local().String(),
 	}
 
-	greetings = append(greetings, &tmpGreeting)
+	accounts = append(accounts, &tmpAccount)
 
 	// CallGrpcService(ctx, "transcation:50051")
 	// CallGrpcService(ctx, "balance:50051")
 
-	return &pb.GreetingResponse{
-		Greeting: greetings,
+	return &pb.AccountResponse{
+		Account: accounts,
 	}, nil
 }
 
@@ -54,14 +53,14 @@ func CallGrpcService(ctx context.Context, address string) {
 	headersIn, _ := metadata.FromIncomingContext(ctx)
 	log.Infof("headersIn: %s", headersIn)
 
-	client := pb.NewGreetingServiceClient(conn)
+	client := pb.NewAccountServiceClient(conn)
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 
 	ctx = metadata.NewOutgoingContext(context.Background(), headersIn)
 
 	defer cancel()
 
-	req := pb.GreetingRequest{}
+	req := pb.AccountRequest{}
 	greeting, err := client.Greeting(ctx, &req)
 	log.Info(greeting.GetGreeting())
 	if err != nil {

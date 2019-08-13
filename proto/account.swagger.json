@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "proto/greeting.proto",
+    "title": "proto/account.proto",
     "version": "version not set"
   },
   "schemes": [
@@ -15,34 +15,31 @@
     "application/json"
   ],
   "paths": {
-    "/api/v1/greeting": {
+    "/accounts": {
       "get": {
-        "operationId": "Greeting",
+        "operationId": "Account",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/greetingGreetingResponse"
+              "$ref": "#/definitions/greetingAccountResponse"
             }
           }
         },
         "tags": [
-          "GreetingService"
+          "AccountService"
         ]
       }
     }
   },
   "definitions": {
-    "greetingGreeting": {
+    "greetingAccount": {
       "type": "object",
       "properties": {
         "id": {
           "type": "string"
         },
-        "service": {
-          "type": "string"
-        },
-        "message": {
+        "description": {
           "type": "string"
         },
         "created": {
@@ -50,13 +47,13 @@
         }
       }
     },
-    "greetingGreetingResponse": {
+    "greetingAccountResponse": {
       "type": "object",
       "properties": {
-        "greeting": {
+        "Account": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/greetingGreeting"
+            "$ref": "#/definitions/greetingAccount"
           }
         }
       }
